@@ -191,25 +191,61 @@ ac.addEventListener("click", ()=>{
         }
 })
 let badd = document.querySelector("#badd");;
-badd.addEventListener("click",()=>{operator="+";
+badd.addEventListener("click",()=>{
+    if(num1!==""&&num2!==""&&operator!==undefined){
+        equals();
+        console.log(num1);
+    }
+    operator="+";
+    if (num1===""){
+        num1="0";
+        console.log(num1);
+    }
     console.log(operator);
 })
 let bsubs = document.querySelector("#bsubstract");;
-bsubs.addEventListener("click",()=>{operator="-";
+bsubs.addEventListener("click",()=>{
+    if(num1!==""&&num2!==""&&operator!==undefined){
+        equals();
+        console.log(num1);
+    }
+    operator="-";
+    if (num1===""){
+        num1="0";
+        console.log(num1);
+    }
     console.log(operator);
 })
 let bmul = document.querySelector("#bmultiply");;
-bmul.addEventListener("click",()=>{operator="*";
+bmul.addEventListener("click",()=>{
+    if(num1!==""&&num2!==""&&operator!==undefined){
+        equals();
+        console.log(num1);
+    }
+    operator="*";
+    if (num1===""){
+        num1="0";
+        console.log(num1);
+    }
     console.log(operator);
 })
 let bdivid = document.querySelector("#bdivide");;
-bdivid.addEventListener("click",()=>{operator="/";
+bdivid.addEventListener("click",()=>{
+    if(num1!==""&&num2!==""&&operator!==undefined){
+        equals();
+        console.log(num1);
+    }
+    operator="/";
+    if (num1===""){
+        num1="0";
+        console.log(num1);
+    }
     console.log(operator);
 })
 let display = document.querySelector("#display-div");
 display.textContent=`${num1}`;
 let equal = document.querySelector("#bequal");
-equal.addEventListener("click",()=>{
+/*equal.addEventListener("click",()=>{
     if(num2!==''){
     num1=Number(num1);
     num2=Number(num2);
@@ -222,5 +258,31 @@ equal.addEventListener("click",()=>{
     }else{
     display.textContent=`${num1}`;}
     }
-})
+})*/
+function equals(){
+    if (num2===""){
+        num2="0";
+    }
+    num1=Number(num1);
+    console.log(num1);
+    num2=Number(num2);
+    console.log(num2);
+    if (num1===0 && operator==="/"||num2===0 && operator==="/"){
+        display.textContent=`Error`;
+        num1="";
+        operator=undefined;
+        num2="";
+        return;
+    }
+    num1=operate(operator,num1,num2).toFixed(5);
+    num1=num1.toString();
+    num2="";
+    operator=undefined;
+    if (num1===0){
+        num1="";
+    }
+    display.textContent=`${num1}`;
+}
+equal.addEventListener("click",equals)
+
 display.textContent=`0`;
